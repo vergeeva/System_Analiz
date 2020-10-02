@@ -48,6 +48,10 @@ namespace ТСиСА {
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::TextBox^ textBox5;
 	private: System::Windows::Forms::TextBox^ textBox6;
+	private: System::Windows::Forms::GroupBox^ groupBox3;
+	private: System::Windows::Forms::Button^ button3;
+	private: System::Windows::Forms::TextBox^ textBox3;
+	private: System::Windows::Forms::TextBox^ textBox4;
 
 	private:
 		/// <summary>
@@ -69,14 +73,19 @@ namespace ТСиСА {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->button3 = (gcnew System::Windows::Forms::Button());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
+			this->groupBox3->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// listBox1
@@ -105,7 +114,6 @@ namespace ТСиСА {
 			this->label1->Size = System::Drawing::Size(73, 17);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Свойства:";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -136,21 +144,12 @@ namespace ТСиСА {
 			this->groupBox1->Controls->Add(this->button1);
 			this->groupBox1->Controls->Add(this->textBox2);
 			this->groupBox1->Controls->Add(this->textBox1);
-			this->groupBox1->Location = System::Drawing::Point(581, 30);
+			this->groupBox1->Location = System::Drawing::Point(581, 27);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(191, 192);
 			this->groupBox1->TabIndex = 6;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Добавление/Удаление";
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(21, 100);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(122, 33);
-			this->button1->TabIndex = 6;
-			this->button1->Text = L"Добавить";
-			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// button2
 			// 
@@ -160,6 +159,15 @@ namespace ТСиСА {
 			this->button2->TabIndex = 7;
 			this->button2->Text = L"Удалить";
 			this->button2->UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(21, 100);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(122, 33);
+			this->button1->TabIndex = 6;
+			this->button1->Text = L"Добавить";
+			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// groupBox2
 			// 
@@ -184,6 +192,7 @@ namespace ТСиСА {
 			// 
 			// textBox5
 			// 
+			this->textBox5->Enabled = false;
 			this->textBox5->Location = System::Drawing::Point(21, 65);
 			this->textBox5->Name = L"textBox5";
 			this->textBox5->Size = System::Drawing::Size(122, 22);
@@ -191,16 +200,55 @@ namespace ТСиСА {
 			// 
 			// textBox6
 			// 
+			this->textBox6->Enabled = false;
 			this->textBox6->Location = System::Drawing::Point(21, 25);
 			this->textBox6->Name = L"textBox6";
 			this->textBox6->Size = System::Drawing::Size(122, 22);
 			this->textBox6->TabIndex = 4;
+			// 
+			// groupBox3
+			// 
+			this->groupBox3->Controls->Add(this->button3);
+			this->groupBox3->Controls->Add(this->textBox3);
+			this->groupBox3->Controls->Add(this->textBox4);
+			this->groupBox3->Location = System::Drawing::Point(50, 370);
+			this->groupBox3->Name = L"groupBox3";
+			this->groupBox3->Size = System::Drawing::Size(283, 102);
+			this->groupBox3->TabIndex = 9;
+			this->groupBox3->TabStop = false;
+			this->groupBox3->Text = L"Генерировать";
+			// 
+			// button3
+			// 
+			this->button3->Location = System::Drawing::Point(149, 35);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(128, 33);
+			this->button3->TabIndex = 6;
+			this->button3->Text = L"Сгенерировать";
+			this->button3->UseVisualStyleBackColor = true;
+			// 
+			// textBox3
+			// 
+			this->textBox3->Enabled = false;
+			this->textBox3->Location = System::Drawing::Point(21, 65);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(122, 22);
+			this->textBox3->TabIndex = 5;
+			// 
+			// textBox4
+			// 
+			this->textBox4->Enabled = false;
+			this->textBox4->Location = System::Drawing::Point(21, 25);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(122, 22);
+			this->textBox4->TabIndex = 4;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(916, 532);
+			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->label2);
@@ -213,12 +261,13 @@ namespace ТСиСА {
 			this->groupBox1->PerformLayout();
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
+			this->groupBox3->ResumeLayout(false);
+			this->groupBox3->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
+
 };
 }

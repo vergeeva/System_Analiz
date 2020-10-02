@@ -1,4 +1,6 @@
 #pragma once
+#include<cstdlib>
+#include<ctime>
 using namespace System;
 
 
@@ -8,6 +10,8 @@ private:
 	array <String^>^ Object; //Объекты или свойства
 	int Count;//Количество объектов или свойств
 public:
+	bool Empty(); //Проверка на пустоту
+	bool Full(); //Проверка на переполненность
 	bool Add(String^ pr); //Добавить
 	bool Delete(String^ pr); //Удалить
 	String^ Random_Object(); //Сгенерировать рандомный объект
