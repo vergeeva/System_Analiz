@@ -2,6 +2,22 @@
 using namespace System::IO;
 #define MAX_SIZE 100
 
+OBJECT::OBJECT()
+{
+	Object = gcnew array <String^>(MAX_SIZE);
+	Count = 0;
+}
+
+bool OBJECT::In(String^ f)
+{
+	for (int i = 0; i < Count; i++)
+	{
+		if (Object[i] == f) return 1;
+	}
+	return 0;
+}
+
+
 bool OBJECT::Empty()
 {
 	return Count == 0;
@@ -14,7 +30,7 @@ bool OBJECT::Full()
 
 bool OBJECT::Add(String^ pr)
 {
-	if (!Full())
+	if (!Full()&& !In(pr))
 	{
 		this->Object[Count] = pr;
 		this->Count++;
@@ -46,7 +62,7 @@ bool OBJECT::Delete(String^ pr)
 String^ OBJECT::Random_Object()
 {
 	srand(time(NULL));
-	int i = rand() % 0 / Count-1;
+	int i = 0 + rand()%(Count);
 	return Object[i];
 }
 
@@ -79,6 +95,7 @@ bool OBJECT::Take_from(String^ pr)
 	while (str = SR->ReadLine()) {
 		Object[i] = str;
 		Count++;
+		i++;
 	}
 	SR->Close();
 	return true;
@@ -86,6 +103,7 @@ bool OBJECT::Take_from(String^ pr)
 
 bool OBJECT::View(System::Windows::Forms::ListBox^ LB)
 {
+	LB->Items->Clear();
 	for (int i = 0; i < Count; i++)
 	{
 		LB->Items->Add(Object[i]);

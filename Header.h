@@ -10,6 +10,8 @@ private:
 	array <String^>^ Object; //Объекты или свойства
 	int Count;//Количество объектов или свойств
 public:
+	OBJECT();
+	bool In(String^ f);//Есть ли такой элемент в списке
 	bool Empty(); //Проверка на пустоту
 	bool Full(); //Проверка на переполненность
 	bool Add(String^ pr); //Добавить

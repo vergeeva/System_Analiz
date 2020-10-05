@@ -1,4 +1,5 @@
 #pragma once
+#include "Header.h"
 
 namespace ТСиСА {
 
@@ -21,9 +22,13 @@ namespace ТСиСА {
 			//
 			//TODO: добавьте код конструктора
 			//
+			obj = gcnew OBJECT();
+			prop = gcnew OBJECT();
 		}
 
 	protected:
+		 OBJECT ^prop;
+		 OBJECT^ obj;
 		/// <summary>
 		/// Освободить все используемые ресурсы.
 		/// </summary>
@@ -94,7 +99,7 @@ namespace ТСиСА {
 			this->listBox1->ItemHeight = 16;
 			this->listBox1->Location = System::Drawing::Point(50, 49);
 			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(230, 292);
+			this->listBox1->Size = System::Drawing::Size(230, 404);
 			this->listBox1->TabIndex = 0;
 			// 
 			// listBox2
@@ -103,7 +108,7 @@ namespace ТСиСА {
 			this->listBox2->ItemHeight = 16;
 			this->listBox2->Location = System::Drawing::Point(335, 49);
 			this->listBox2->Name = L"listBox2";
-			this->listBox2->Size = System::Drawing::Size(230, 292);
+			this->listBox2->Size = System::Drawing::Size(230, 404);
 			this->listBox2->TabIndex = 1;
 			// 
 			// label1
@@ -159,6 +164,7 @@ namespace ТСиСА {
 			this->button2->TabIndex = 7;
 			this->button2->Text = L"Удалить";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
 			// 
 			// button1
 			// 
@@ -168,6 +174,7 @@ namespace ТСиСА {
 			this->button1->TabIndex = 6;
 			this->button1->Text = L"Добавить";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
 			// 
 			// groupBox2
 			// 
@@ -179,7 +186,7 @@ namespace ТСиСА {
 			this->groupBox2->Size = System::Drawing::Size(283, 102);
 			this->groupBox2->TabIndex = 8;
 			this->groupBox2->TabStop = false;
-			this->groupBox2->Text = L"Генерировать";
+			this->groupBox2->Text = L"Генерировать пару";
 			// 
 			// button4
 			// 
@@ -189,6 +196,7 @@ namespace ТСиСА {
 			this->button4->TabIndex = 6;
 			this->button4->Text = L"Сгенерировать";
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
 			// 
 			// textBox5
 			// 
@@ -211,26 +219,27 @@ namespace ТСиСА {
 			this->groupBox3->Controls->Add(this->button3);
 			this->groupBox3->Controls->Add(this->textBox3);
 			this->groupBox3->Controls->Add(this->textBox4);
-			this->groupBox3->Location = System::Drawing::Point(50, 370);
+			this->groupBox3->Location = System::Drawing::Point(581, 360);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(283, 102);
+			this->groupBox3->Size = System::Drawing::Size(283, 92);
 			this->groupBox3->TabIndex = 9;
 			this->groupBox3->TabStop = false;
-			this->groupBox3->Text = L"Генерировать";
+			this->groupBox3->Text = L"Генерировать свойство";
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(149, 35);
+			this->button3->Location = System::Drawing::Point(149, 25);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(128, 33);
+			this->button3->Size = System::Drawing::Size(128, 52);
 			this->button3->TabIndex = 6;
-			this->button3->Text = L"Сгенерировать";
+			this->button3->Text = L"Сгенерировать  объект";
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
 			// 
 			// textBox3
 			// 
 			this->textBox3->Enabled = false;
-			this->textBox3->Location = System::Drawing::Point(21, 65);
+			this->textBox3->Location = System::Drawing::Point(21, 55);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(122, 22);
 			this->textBox3->TabIndex = 5;
@@ -257,6 +266,7 @@ namespace ТСиСА {
 			this->Controls->Add(this->listBox1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			this->groupBox2->ResumeLayout(false);
@@ -269,5 +279,52 @@ namespace ТСиСА {
 		}
 #pragma endregion
 
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	prop->Take_from("Свойства.txt");
+	obj->Take_from("Объекты.txt");
+	prop->View(listBox1);
+	obj->View(listBox2);
+	textBox4->Text = prop->Random_Object();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	// 6 5
+	textBox6->Text = prop->Random_Object();
+	textBox5->Text = obj->Random_Object();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	textBox3->Text = obj->Random_Object();
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	 
+	if (textBox1->Text != "")
+	{
+		prop->Add(textBox1->Text);
+		prop->View(listBox1);
+		prop->Upload_to("Свойства.txt");
+	}
+
+	if (textBox2->Text != "")
+	{
+		obj->Add(textBox2->Text);
+		obj->View(listBox2);
+		obj->Upload_to("Объекты.txt");
+	}
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	
+	if (textBox1->Text != "")
+	{
+		prop->Delete(textBox1->Text);
+		prop->View(listBox1);
+		prop->Upload_to("Свойства.txt");
+	}
+
+	if (textBox2->Text != "")
+	{
+		obj->Delete(textBox2->Text);
+		obj->View(listBox2);
+		obj->Upload_to("Объекты.txt");
+	}
+}
 };
 }
