@@ -83,6 +83,7 @@ bool OBJECT::Upload_to(String^ pr)
 		My_SW->Write(Line);
 	}
 	String ^Line = this->Object[Count - 1];
+	My_SW->Write(Line);
 	My_SW->Close();
 	return false;
 }
